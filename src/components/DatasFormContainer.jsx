@@ -1,6 +1,9 @@
 import { Card, Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function DatasFormContainer({ datas, title }) {
+  const navigate = useNavigate();
+
   const showTitle = (data) => {
     if (title === '티비') {
       return getTitle(data.name);
@@ -18,8 +21,6 @@ export default function DatasFormContainer({ datas, title }) {
   };
 
   const getTitle = (data) => {
-    console.log('타이틀 공개', data, data.length);
-
     return data.length < 30 ? data : data.slice(0, 30) + '...';
   };
 
@@ -31,6 +32,14 @@ export default function DatasFormContainer({ datas, title }) {
     }
   };
 
+  const onClickCard = (id) => {
+    if (title === '티비') {
+      navigate(`/tv/${id}`);
+    } else if ((title = '무비')) {
+      navigate(`/movie/${id}`);
+    }
+  };
+
   return (
     <Container>
       <h1 className='mt-4'>{title}</h1>
@@ -38,7 +47,10 @@ export default function DatasFormContainer({ datas, title }) {
         {datas &&
           datas.map((data) => (
             <Col className='mt-4' key={data.id}>
-              <Card style={{ width: '18rem', height: '750px' }}>
+              <Card
+                style={{ width: '18rem', height: '750px' }}
+                onClick={() => onClickCard(data.id)}
+              >
                 <Card.Img
                   variant='top'
                   style={{ height: '400px' }}

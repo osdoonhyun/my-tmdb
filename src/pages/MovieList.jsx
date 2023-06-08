@@ -48,7 +48,7 @@ export default function MovieList() {
       <tbody>
         {moviesData &&
           moviesData.map((movie, index) => (
-            <LinkContainer to={`/${movie.id}`}>
+            <LinkContainer to={`/movie/${movie.id}`}>
               <tr key={movie.id}>
                 <td>{index + 1}</td>
                 <td>{movie.title}</td>

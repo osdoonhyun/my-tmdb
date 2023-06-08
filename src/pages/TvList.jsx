@@ -48,7 +48,7 @@ export default function TvList() {
       <tbody>
         {tvsData &&
           tvsData.map((tv, index) => (
-            <LinkContainer to={`/${tv.id}`}>
+            <LinkContainer to={`/tv/${tv.id}`}>
               <tr key={tv.id}>
                 <td>{index + 1}</td>
                 <td>{tv.name}</td>
