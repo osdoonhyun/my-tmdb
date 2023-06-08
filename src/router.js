@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Movies from './pages/Movies';
-import Details from './pages/Details';
+import { Movies, Lists, Details, Tvs } from './pages';
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Movies /> },
+  { path: '/', element: <Lists /> },
   { path: '/:detailId', element: <Details /> },
+  { path: '/tvs', element: <Tvs /> },
+  { path: '/movies', element: <Movies /> },
 ]);
