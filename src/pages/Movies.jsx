@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container, Row, Table } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+// import { Container, Row, Table } from 'react-bootstrap';
+// import { LinkContainer } from 'react-router-bootstrap';
+import DatasFormContainer from '../components/DatasFormContainer';
 
 export default function Movies() {
   const [moviesData, setMoviesData] = useState([]);
@@ -33,40 +34,41 @@ export default function Movies() {
   }, []);
   // title, popularity, poster_path
   return (
-    <Container>
-      <br />
-      <h1>영화 리스트</h1>
-      <Row className='mt-3'>
-        <Table striped bordered hover variant='dark'>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Language</th>
-              <th>Popularity</th>
-              <th>Video</th>
-              <th>Vote_average</th>
-              <th>Genre</th>
-            </tr>
-          </thead>
-          <tbody>
-            {moviesData &&
-              moviesData.map((movie, index) => (
-                <LinkContainer to={`/${movie.id}`}>
-                  <tr key={movie.id}>
-                    <td>{index}</td>
-                    <td>{movie.title}</td>
-                    <td>{movie.original_language}</td>
-                    <td>{movie.popularity}</td>
-                    <td>{movie.video}</td>
-                    <td>{movie.vote_average}</td>
-                    <td>{movie?.genre_ids?.map((genre) => genre + ', ')}</td>
-                  </tr>
-                </LinkContainer>
-              ))}
-          </tbody>
-        </Table>
-      </Row>
-    </Container>
+    <DatasFormContainer title='무비' datas={moviesData} />
+    // <Container>
+    //   <br />
+    //   <h1>영화 리스트</h1>
+    //   <Row className='mt-3'>
+    //     <Table striped bordered hover variant='dark'>
+    //       <thead>
+    //         <tr>
+    //           <th>#</th>
+    //           <th>Title</th>
+    //           <th>Language</th>
+    //           <th>Popularity</th>
+    //           <th>Video</th>
+    //           <th>Vote_average</th>
+    //           <th>Genre</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {moviesData &&
+    //           moviesData.map((movie, index) => (
+    //             <LinkContainer to={`/${movie.id}`}>
+    //               <tr key={movie.id}>
+    //                 <td>{index}</td>
+    //                 <td>{movie.title}</td>
+    //                 <td>{movie.original_language}</td>
+    //                 <td>{movie.popularity}</td>
+    //                 <td>{movie.video}</td>
+    //                 <td>{movie.vote_average}</td>
+    //                 <td>{movie?.genre_ids?.map((genre) => genre + ', ')}</td>
+    //               </tr>
+    //             </LinkContainer>
+    //           ))}
+    //       </tbody>
+    //     </Table>
+    //   </Row>
+    // </Container>
   );
 }
