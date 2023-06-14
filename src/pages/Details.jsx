@@ -4,7 +4,7 @@ import { Col, Container, Image, Row, Stack } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import '../styles/Custom.css';
 
-const API_KEY = '68d3b58f0873761971218e8327d8873a';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default function Details() {
   const { pathname, detailId } = useParams();
@@ -53,7 +53,7 @@ export default function Details() {
   };
 
   return (
-    <div className='background-color'>
+    <div className='pb-5 background-color'>
       <Image
         src={`https://image.tmdb.org/t/p/original${detailData.backdrop_path}`}
         alt='back_poster'
@@ -145,7 +145,7 @@ export default function Details() {
           <Col xs lg='1' className='custom-font-color'>
             줄거리
           </Col>
-          <Col>{detailData.overview}</Col>
+          <Col>{detailData.overview ? detailData.overview : 'No overview'}</Col>
         </Row>
       </Container>
     </div>
