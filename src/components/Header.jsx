@@ -2,8 +2,18 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../actions/userActions';
 
 function Header() {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
       <Container>
@@ -26,10 +36,23 @@ function Header() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href='#deets'>회원가입</Nav.Link>
-            <Nav.Link eventKey={2} href='#memes'>
-              로그인
-            </Nav.Link>
+            {userInfo ? (
+              <NavDropdown title='⚙︎' id='collasible-nav-dropdown'>
+                <NavDropdown.Item href='#action/3.3'>
+                  영화 모아보기
+                </NavDropdown.Item>
+                <NavDropdown.Item href='#action/3.2'>프로필</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logoutHandler}>
+                  로그아웃
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <>
+                <Nav.Link href='/signup'>회원가입</Nav.Link>
+                <Nav.Link href='/login'>로그인</Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
