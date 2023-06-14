@@ -48,7 +48,8 @@ export default function DatasFormContainer({ datas, title }) {
           datas.map((data) => (
             <Col className='mt-4' key={data.id}>
               <Card
-                style={{ width: '18rem', height: '750px' }}
+                className='custom-card'
+                style={{ width: '18rem', height: '750px', cursor: 'pointer' }}
                 onClick={() => onClickCard(data.id)}
               >
                 <Card.Img

@@ -5,3 +5,11 @@
 .background-color {
   background-color: #f8f8f8;
 }
+
+.custom-card {
+  transition: transform 0.2s;
+}
+
+.custom-card:hover {
+  transform: scale(1.05);
+}
